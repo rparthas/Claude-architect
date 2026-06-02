@@ -22,6 +22,7 @@ This project uses [uv](https://docs.astral.sh/uv/) for dependency management.
 
 - Python 3.11+
 - [uv](https://docs.astral.sh/uv/getting-started/installation/)
+- An [Anthropic API key](https://console.anthropic.com/)
 
 ### Install
 
@@ -29,19 +30,29 @@ This project uses [uv](https://docs.astral.sh/uv/) for dependency management.
 uv sync
 ```
 
-### Run a script
+### Configure API key
+
+Copy `.env.example` to `.env` and set your key:
 
 ```bash
-uv run python examples/hello_claude.py
+cp .env.example .env
+# then edit .env and set ANTHROPIC_API_KEY=sk-ant-...
+```
+
+### Run the API check
+
+```bash
+uv run python api_check.py
 ```
 
 ## Structure
 
 ```
 .
-├── pyproject.toml      # Project dependencies (uv)
+├── pyproject.toml          # Project dependencies (uv)
 ├── README.md
-└── examples/           # Practice scripts and experiments
+├── api_check.py            # Sanity check — calls Claude and prints a response
+└── claude_architect/       # Package for shared utilities (in progress)
 ```
 
 ## Resources
